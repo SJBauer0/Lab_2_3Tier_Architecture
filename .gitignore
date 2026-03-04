@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS system files
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+debug.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+terraform.tfvars
+terraform.tfvars.json
+
+# Sensitive files
+*.pem
+*.key
+*.crt
+*.env
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs
+*.log
+
+# Plan output
+*.plan
