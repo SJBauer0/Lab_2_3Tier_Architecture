@@ -8,10 +8,11 @@ module "networking" {
   source = "./modules/networking"
 
   project_name       = var.project_name
-  vpc_cidr           = "172.16.0.0/16"
+  vpc_cidr           = local.vpc_cidr
   availability_zones = var.availability_zone
+
   # Used to appropriately tag subnets for AWS Load Balancer Controller/EKS discovery
-  eks_cluster_name = "${var.project_name}-main-eks-cluster"
+  eks_cluster_name = local.cluster_name
 }
 
 # 2. Database Module
