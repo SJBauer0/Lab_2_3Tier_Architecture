@@ -1,3 +1,3 @@
 locals {
-  eks_version = 1.0
+  eks_version = "1.30"
 }
