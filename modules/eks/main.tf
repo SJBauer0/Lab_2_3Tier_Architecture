@@ -80,6 +80,12 @@ resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
 
+# Attach AmazonSSMManagedInstanceCore to allow SSM access to the worker nodes
+resource "aws_iam_role_policy_attachment" "AmazonSSMManagedInstanceCore" {
+  role       = aws_iam_role.worker_eks_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
+
 ###################
 ### EKS Cluster ###
 ###################
@@ -101,8 +107,47 @@ resource "aws_eks_cluster" "main_eks_cluster" {
     subnet_ids             = var.subnet_ids
   }
 
+  access_config {
+    # This setting allows the use of EKS Access Entry to manage access to the EKS cluster.
+    # This is the modern way to manage cluster access and is required to see cluster resources in the AWS Console.
+    authentication_mode = "API_AND_CONFIG_MAP"
+    bootstrap_cluster_creator_admin_permissions = true
+  }
+
   # Ensure the EKS cluster is created after the IAM role and its policies are in place
   depends_on = [aws_iam_role_policy_attachment.EKSClusterPolicy]
+}
+
+#######################
+### EKS Cluster Access ###
+#######################
+
+# Grant cluster admin access to the provided IAM ARNs to see clusters, resources and compute in AWS console
+resource "aws_eks_access_entry" "admin_access_entry" {
+  # This allows multiple ARNs to be passed via variables and grants them admin access to the EKS cluster in the AWS Console.
+  # toset function is used to convert the list of ARNs into a set, which is required for the for_each loop to iterate over 
+  # each ARN and create an access entry for it.
+  for_each      = toset(var.admin_arns)
+
+  # The name of the EKS cluster to which access is being granted.
+  cluster_name  = aws_eks_cluster.main_eks_cluster.name
+  principal_arn = each.value
+  type          = "STANDARD"
+}
+
+# Grant cluster admin access to the provided IAM ARNs to see clusters, resources and compute in AWS console
+resource "aws_eks_access_policy_association" "admin_policy_association" {
+  # This allows multiple ARNs to be passed via variables and grants them admin access to the EKS cluster in the AWS Console.
+  for_each      = toset(var.admin_arns)
+  cluster_name  = aws_eks_cluster.main_eks_cluster.name
+
+  # This is the ARN of the AmazonEKSClusterAdminPolicy, which grants full admin access to the EKS cluster in the AWS Console.
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+  principal_arn = each.value
+
+  access_scope {
+    type = "cluster"
+  }
 }
 
 ######################
@@ -132,6 +177,7 @@ resource "aws_eks_node_group" "eks_nodes" {
   depends_on = [
     aws_iam_role_policy_attachment.AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly,
-    aws_iam_role_policy_attachment.AmazonEKS_CNI_Policy
+    aws_iam_role_policy_attachment.AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.AmazonSSMManagedInstanceCore
   ]
 }

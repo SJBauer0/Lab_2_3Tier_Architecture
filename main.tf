@@ -2,6 +2,9 @@
 #  Root Module
 # =============
 
+# Fetch the current AWS identity to grant the cluster creator/admin access
+data "aws_caller_identity" "current" {}
+
 # Networking Module
 module "networking" {
   source = "./modules/networking"
@@ -55,6 +58,13 @@ module "eks" {
 
   # Instance type for the EKS worker nodes (Currently set to t3.small)
   node_instance_type = var.node_instance_type
+
+  # Pass the admin ARNs to grant access to EKS clusters in AWS Console
+  admin_arns = [
+    data.aws_caller_identity.current.arn,
+    # Add any additional IAM ARNs of users/roles that need cluster admin access in the AWS Console here
+    "arn:aws:iam::987470856504:user/sebastian"
+  ]
 
   # Ensure the EKS cluster is created after the VPC and subnets are in place
   depends_on = [module.networking]

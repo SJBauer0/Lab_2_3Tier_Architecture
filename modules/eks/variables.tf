@@ -37,3 +37,8 @@ variable "node_max_size" {
   type        = number
   default     = 2
 }
+
+variable "admin_arns" {
+  description = "List of IAM ARNs of the users/roles that need cluster admin access"
+  type        = list(string)
+}
