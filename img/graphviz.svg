@@ -1,0 +1,242 @@
+<svg width="1062pt" height="1215pt" viewBox="0.00 0.00 1062.00 1215.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1211.03)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1211.03 1057.74,-1211.03 1057.74,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_vpc</title>
+<polygon fill="#f8f9fa" stroke="#6c757d" stroke-dasharray="5,2" points="131.74,-8 131.74,-1199.03 1045.74,-1199.03 1045.74,-8 131.74,-8"/>
+<text xml:space="preserve" text-anchor="middle" x="588.74" y="-1182.43" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">AWS VPC (172.16.0.0/16)</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_az_a</title>
+<polygon fill="#ffffff" stroke="#9e9e9e" stroke-dasharray="5,2" points="139.74,-16 139.74,-223.4 568.74,-223.4 568.74,-16 139.74,-16"/>
+<text xml:space="preserve" text-anchor="middle" x="354.24" y="-206.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">Availability Zone A (us-east-1a)</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_az_b</title>
+<polygon fill="#ffffff" stroke="#9e9e9e" stroke-dasharray="5,2" points="610.74,-16 610.74,-223.4 1037.74,-223.4 1037.74,-16 610.74,-16"/>
+<text xml:space="preserve" text-anchor="middle" x="824.24" y="-206.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00">Availability Zone B (us-east-1b)</text>
+</g>
+<!-- aws_internet_gateway -->
+<g id="node1" class="node">
+<title>aws_internet_gateway</title>
+<path fill="#90caf9" stroke="#444444" d="M98.71,-1159.31C98.71,-1159.31 24.78,-1159.31 24.78,-1159.31 18.78,-1159.31 12.78,-1153.31 12.78,-1147.31 12.78,-1147.31 12.78,-1118.51 12.78,-1118.51 12.78,-1112.51 18.78,-1106.51 24.78,-1106.51 24.78,-1106.51 98.71,-1106.51 98.71,-1106.51 104.71,-1106.51 110.71,-1112.51 110.71,-1118.51 110.71,-1118.51 110.71,-1147.31 110.71,-1147.31 110.71,-1153.31 104.71,-1159.31 98.71,-1159.31"/>
+<text xml:space="preserve" text-anchor="middle" x="61.74" y="-1135.91" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Internet Gateway</text>
+<text xml:space="preserve" text-anchor="middle" x="61.74" y="-1123.91" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(VPC Edge)</text>
+</g>
+<!-- k8s_service.frontend -->
+<g id="node2" class="node">
+<title>k8s_service.frontend</title>
+<path fill="#bbdefb" stroke="#444444" d="M111.49,-1016.8C111.49,-1016.8 12,-1016.8 12,-1016.8 6,-1016.8 0,-1010.8 0,-1004.8 0,-1004.8 0,-976 0,-976 0,-970 6,-964 12,-964 12,-964 111.49,-964 111.49,-964 117.49,-964 123.49,-970 123.49,-976 123.49,-976 123.49,-1004.8 123.49,-1004.8 123.49,-1010.8 117.49,-1016.8 111.49,-1016.8"/>
+<text xml:space="preserve" text-anchor="middle" x="61.74" y="-993.4" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Frontend LoadBalancer</text>
+<text xml:space="preserve" text-anchor="middle" x="61.74" y="-981.4" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(AWS Classic LB)</text>
+</g>
+<!-- aws_internet_gateway&#45;&gt;k8s_service.frontend -->
+<g id="edge3" class="edge">
+<title>aws_internet_gateway-&gt;k8s_service.frontend</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" d="M60.43,-1106.09C59.45,-1086.74 58.27,-1063.6 58.27,-1063.6 58.27,-1063.6 58.27,-1052.8 58.27,-1052.8 58.27,-1052.8 58.96,-1040.57 59.73,-1027.02"/>
+<polygon fill="#555555" stroke="#555555" stroke-width="1.5" points="62.5,-1027.5 60.16,-1019.35 56.91,-1027.18 62.5,-1027.5"/>
+<text xml:space="preserve" text-anchor="middle" x="88.01" y="-1055.5" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Inbound Traffic</text>
+</g>
+<!-- k8s_deployment.frontend -->
+<g id="node13" class="node">
+<title>k8s_deployment.frontend</title>
+<polygon fill="#ffe0b2" stroke="#444444" points="494.17,-881.2 407.31,-881.2 407.31,-877.2 403.31,-877.2 403.31,-873.2 407.31,-873.2 407.31,-836.4 403.31,-836.4 403.31,-832.4 407.31,-832.4 407.31,-828.4 494.17,-828.4 494.17,-881.2"/>
+<polyline fill="none" stroke="#444444" points="407.31,-877.2 411.31,-877.2 411.31,-873.2 407.31,-873.2"/>
+<polyline fill="none" stroke="#444444" points="407.31,-836.4 411.31,-836.4 411.31,-832.4 407.31,-832.4"/>
+<text xml:space="preserve" text-anchor="middle" x="450.74" y="-857.8" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Frontend Pods</text>
+<text xml:space="preserve" text-anchor="middle" x="450.74" y="-845.8" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(React)</text>
+</g>
+<!-- k8s_service.frontend&#45;&gt;k8s_deployment.frontend -->
+<g id="edge4" class="edge">
+<title>k8s_service.frontend-&gt;k8s_deployment.frontend</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" d="M123.81,-965.51C126.29,-964.56 127.74,-964 127.74,-964 127.74,-964 305.35,-904.5 397.16,-873.75"/>
+<polygon fill="#555555" stroke="#555555" stroke-width="1.5" points="398,-876.42 404.69,-871.23 396.22,-871.11 398,-876.42"/>
+<text xml:space="preserve" text-anchor="middle" x="278.56" y="-919.9" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Routes to</text>
+</g>
+<!-- aws_subnet.public_subnet_A -->
+<g id="node3" class="node">
+<title>aws_subnet.public_subnet_A</title>
+<path fill="#e3f2fd" stroke="#444444" d="M229.92,-190.6C229.92,-190.6 159.57,-190.6 159.57,-190.6 153.57,-190.6 147.57,-184.6 147.57,-178.6 147.57,-178.6 147.57,-149.8 147.57,-149.8 147.57,-143.8 153.57,-137.8 159.57,-137.8 159.57,-137.8 229.92,-137.8 229.92,-137.8 235.92,-137.8 241.92,-143.8 241.92,-149.8 241.92,-149.8 241.92,-178.6 241.92,-178.6 241.92,-184.6 235.92,-190.6 229.92,-190.6"/>
+<text xml:space="preserve" text-anchor="middle" x="194.74" y="-167.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Public Subnet A</text>
+<text xml:space="preserve" text-anchor="middle" x="194.74" y="-155.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(172.16.1.0/24)</text>
+</g>
+<!-- aws_nat_gateway.azA_nat_gw -->
+<g id="node4" class="node">
+<title>aws_nat_gateway.azA_nat_gw</title>
+<path fill="#90caf9" stroke="#444444" d="M233.3,-64.8C233.3,-64.8 160.19,-64.8 160.19,-64.8 154.19,-64.8 148.19,-58.8 148.19,-52.8 148.19,-52.8 148.19,-36 148.19,-36 148.19,-30 154.19,-24 160.19,-24 160.19,-24 233.3,-24 233.3,-24 239.3,-24 245.3,-30 245.3,-36 245.3,-36 245.3,-52.8 245.3,-52.8 245.3,-58.8 239.3,-64.8 233.3,-64.8"/>
+<text xml:space="preserve" text-anchor="middle" x="196.74" y="-41.4" font-family="Helvetica, Arial, sans-serif" font-size="10.00">NAT Gateway A</text>
+</g>
+<!-- aws_subnet.public_subnet_A&#45;&gt;aws_nat_gateway.azA_nat_gw -->
+<g id="edge1" class="edge">
+<title>aws_subnet.public_subnet_A-&gt;aws_nat_gateway.azA_nat_gw</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" stroke-dasharray="1,5" d="M195.18,-137.35C195.55,-115.54 196.07,-84.79 196.41,-64.98"/>
+</g>
+<!-- aws_subnet.private_subnet_A -->
+<g id="node5" class="node">
+<title>aws_subnet.private_subnet_A</title>
+<path fill="#fff3e0" stroke="#444444" d="M385.31,-190.6C385.31,-190.6 312.18,-190.6 312.18,-190.6 306.18,-190.6 300.18,-184.6 300.18,-178.6 300.18,-178.6 300.18,-149.8 300.18,-149.8 300.18,-143.8 306.18,-137.8 312.18,-137.8 312.18,-137.8 385.31,-137.8 385.31,-137.8 391.31,-137.8 397.31,-143.8 397.31,-149.8 397.31,-149.8 397.31,-178.6 397.31,-178.6 397.31,-184.6 391.31,-190.6 385.31,-190.6"/>
+<text xml:space="preserve" text-anchor="middle" x="348.74" y="-167.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Private Subnet A</text>
+<text xml:space="preserve" text-anchor="middle" x="348.74" y="-155.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(172.16.10.0/24)</text>
+</g>
+<!-- aws_subnet.privateDB_subnet_A -->
+<g id="node6" class="node">
+<title>aws_subnet.privateDB_subnet_A</title>
+<path fill="#e8f5e9" stroke="#444444" d="M548.47,-190.6C548.47,-190.6 467.02,-190.6 467.02,-190.6 461.02,-190.6 455.02,-184.6 455.02,-178.6 455.02,-178.6 455.02,-149.8 455.02,-149.8 455.02,-143.8 461.02,-137.8 467.02,-137.8 467.02,-137.8 548.47,-137.8 548.47,-137.8 554.47,-137.8 560.47,-143.8 560.47,-149.8 560.47,-149.8 560.47,-178.6 560.47,-178.6 560.47,-184.6 554.47,-190.6 548.47,-190.6"/>
+<text xml:space="preserve" text-anchor="middle" x="507.74" y="-167.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Database Subnet A</text>
+<text xml:space="preserve" text-anchor="middle" x="507.74" y="-155.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(172.16.100.0/24)</text>
+</g>
+<!-- aws_subnet.public_subnet_B -->
+<g id="node7" class="node">
+<title>aws_subnet.public_subnet_B</title>
+<path fill="#e3f2fd" stroke="#444444" d="M700.65,-190.6C700.65,-190.6 630.84,-190.6 630.84,-190.6 624.84,-190.6 618.84,-184.6 618.84,-178.6 618.84,-178.6 618.84,-149.8 618.84,-149.8 618.84,-143.8 624.84,-137.8 630.84,-137.8 630.84,-137.8 700.65,-137.8 700.65,-137.8 706.65,-137.8 712.65,-143.8 712.65,-149.8 712.65,-149.8 712.65,-178.6 712.65,-178.6 712.65,-184.6 706.65,-190.6 700.65,-190.6"/>
+<text xml:space="preserve" text-anchor="middle" x="665.74" y="-167.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Public Subnet B</text>
+<text xml:space="preserve" text-anchor="middle" x="665.74" y="-155.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(172.16.2.0/24)</text>
+</g>
+<!-- aws_nat_gateway.azB_nat_gw -->
+<g id="node8" class="node">
+<title>aws_nat_gateway.azB_nat_gw</title>
+<path fill="#90caf9" stroke="#444444" d="M703.02,-64.8C703.02,-64.8 630.46,-64.8 630.46,-64.8 624.46,-64.8 618.46,-58.8 618.46,-52.8 618.46,-52.8 618.46,-36 618.46,-36 618.46,-30 624.46,-24 630.46,-24 630.46,-24 703.02,-24 703.02,-24 709.02,-24 715.02,-30 715.02,-36 715.02,-36 715.02,-52.8 715.02,-52.8 715.02,-58.8 709.02,-64.8 703.02,-64.8"/>
+<text xml:space="preserve" text-anchor="middle" x="666.74" y="-41.4" font-family="Helvetica, Arial, sans-serif" font-size="10.00">NAT Gateway B</text>
+</g>
+<!-- aws_subnet.public_subnet_B&#45;&gt;aws_nat_gateway.azB_nat_gw -->
+<g id="edge2" class="edge">
+<title>aws_subnet.public_subnet_B-&gt;aws_nat_gateway.azB_nat_gw</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" stroke-dasharray="1,5" d="M665.96,-137.35C666.15,-115.54 666.41,-84.79 666.58,-64.98"/>
+</g>
+<!-- aws_subnet.private_subnet_B -->
+<g id="node9" class="node">
+<title>aws_subnet.private_subnet_B</title>
+<path fill="#fff3e0" stroke="#444444" d="M1018.03,-190.6C1018.03,-190.6 945.46,-190.6 945.46,-190.6 939.46,-190.6 933.46,-184.6 933.46,-178.6 933.46,-178.6 933.46,-149.8 933.46,-149.8 933.46,-143.8 939.46,-137.8 945.46,-137.8 945.46,-137.8 1018.03,-137.8 1018.03,-137.8 1024.03,-137.8 1030.03,-143.8 1030.03,-149.8 1030.03,-149.8 1030.03,-178.6 1030.03,-178.6 1030.03,-184.6 1024.03,-190.6 1018.03,-190.6"/>
+<text xml:space="preserve" text-anchor="middle" x="981.74" y="-167.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Private Subnet B</text>
+<text xml:space="preserve" text-anchor="middle" x="981.74" y="-155.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(172.16.20.0/24)</text>
+</g>
+<!-- aws_subnet.privateDB_subnet_B -->
+<g id="node10" class="node">
+<title>aws_subnet.privateDB_subnet_B</title>
+<path fill="#e8f5e9" stroke="#444444" d="M863.19,-190.6C863.19,-190.6 782.3,-190.6 782.3,-190.6 776.3,-190.6 770.3,-184.6 770.3,-178.6 770.3,-178.6 770.3,-149.8 770.3,-149.8 770.3,-143.8 776.3,-137.8 782.3,-137.8 782.3,-137.8 863.19,-137.8 863.19,-137.8 869.19,-137.8 875.19,-143.8 875.19,-149.8 875.19,-149.8 875.19,-178.6 875.19,-178.6 875.19,-184.6 869.19,-190.6 863.19,-190.6"/>
+<text xml:space="preserve" text-anchor="middle" x="822.74" y="-167.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Database Subnet B</text>
+<text xml:space="preserve" text-anchor="middle" x="822.74" y="-155.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(172.16.200.0/24)</text>
+</g>
+<!-- eks_cluster -->
+<g id="node11" class="node">
+<title>eks_cluster</title>
+<path fill="#ffb74d" stroke="#444444" d="M620.36,-1140.26C620.36,-1140.26 596.29,-1158.88 596.29,-1158.88 591.55,-1162.55 580.8,-1166.23 574.8,-1166.23 574.8,-1166.23 512.69,-1166.23 512.69,-1166.23 506.69,-1166.23 495.94,-1162.55 491.2,-1158.88 491.2,-1158.88 467.12,-1140.26 467.12,-1140.26 462.38,-1136.58 462.38,-1129.24 467.12,-1125.57 467.12,-1125.57 491.2,-1106.94 491.2,-1106.94 495.94,-1103.27 506.69,-1099.6 512.69,-1099.6 512.69,-1099.6 574.8,-1099.6 574.8,-1099.6 580.8,-1099.6 591.55,-1103.27 596.29,-1106.94 596.29,-1106.94 620.36,-1125.57 620.36,-1125.57 625.11,-1129.24 625.11,-1136.58 620.36,-1140.26"/>
+<text xml:space="preserve" text-anchor="middle" x="543.74" y="-1129.91" font-family="Helvetica, Arial, sans-serif" font-size="10.00">EKS Control Plane</text>
+</g>
+<!-- eks_node_group -->
+<g id="node12" class="node">
+<title>eks_node_group</title>
+<path fill="#ffcc80" stroke="#444444" d="M589.75,-1016.8C589.75,-1016.8 497.74,-1016.8 497.74,-1016.8 491.74,-1016.8 485.74,-1010.8 485.74,-1004.8 485.74,-1004.8 485.74,-976 485.74,-976 485.74,-970 491.74,-964 497.74,-964 497.74,-964 589.75,-964 589.75,-964 595.75,-964 601.75,-970 601.75,-976 601.75,-976 601.75,-1004.8 601.75,-1004.8 601.75,-1010.8 595.75,-1016.8 589.75,-1016.8"/>
+<text xml:space="preserve" text-anchor="middle" x="543.74" y="-993.4" font-family="Helvetica, Arial, sans-serif" font-size="10.00">EKS Worker Nodes</text>
+<text xml:space="preserve" text-anchor="middle" x="543.74" y="-981.4" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(Auto Scaling Group)</text>
+</g>
+<!-- eks_cluster&#45;&gt;eks_node_group -->
+<g id="edge9" class="edge">
+<title>eks_cluster-&gt;eks_node_group</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" d="M543.74,-1099.32C543.74,-1077.77 543.74,-1049.49 543.74,-1027.29"/>
+<polygon fill="#555555" stroke="#555555" stroke-width="1.5" points="546.54,-1027.52 543.74,-1019.52 540.94,-1027.52 546.54,-1027.52"/>
+<text xml:space="preserve" text-anchor="middle" x="578.74" y="-1055.5" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Manages Compute</text>
+</g>
+<!-- eks_node_group&#45;&gt;aws_subnet.private_subnet_A -->
+<g id="edge10" class="edge">
+<title>eks_node_group-&gt;aws_subnet.private_subnet_A</title>
+<path fill="none" stroke="#e65100" stroke-width="1.5" stroke-dasharray="5,2" d="M504.64,-963.76C455.85,-931.76 378.74,-881.2 378.74,-881.2 378.74,-881.2 348.74,-855.8 348.74,-855.8 348.74,-855.8 348.74,-855.8 348.74,-297.6 348.74,-297.6 348.74,-240.28 348.74,-201.07"/>
+<polygon fill="#e65100" stroke="#e65100" stroke-width="1.5" points="351.54,-201.31 348.74,-193.31 345.94,-201.31 351.54,-201.31"/>
+<text xml:space="preserve" text-anchor="middle" x="368.75" y="-580.9" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Spans into</text>
+</g>
+<!-- eks_node_group&#45;&gt;aws_subnet.private_subnet_B -->
+<g id="edge11" class="edge">
+<title>eks_node_group-&gt;aws_subnet.private_subnet_B</title>
+<path fill="none" stroke="#e65100" stroke-width="1.5" stroke-dasharray="5,2" d="M582.5,-963.64C640.91,-924.82 744.74,-855.8 744.74,-855.8 744.74,-855.8 744.74,-855.8 744.74,-297.6 744.74,-297.6 903.74,-223.4 903.74,-223.4 903.74,-223.4 921.1,-210.45 939.43,-196.77"/>
+<polygon fill="#e65100" stroke="#e65100" stroke-width="1.5" points="940.75,-199.28 945.49,-192.25 937.4,-194.79 940.75,-199.28"/>
+<text xml:space="preserve" text-anchor="middle" x="764.75" y="-580.9" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Spans into</text>
+</g>
+<!-- eks_node_group&#45;&gt;k8s_deployment.frontend -->
+<g id="edge12" class="edge">
+<title>eks_node_group-&gt;k8s_deployment.frontend</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" stroke-dasharray="5,2" d="M520.15,-955.5C504.13,-932.49 483.27,-902.53 468.62,-881.48"/>
+<polygon fill="#555555" stroke="#555555" stroke-width="1.5" points="517.65,-956.81 524.52,-961.78 522.24,-953.61 517.65,-956.81"/>
+<text xml:space="preserve" text-anchor="middle" x="521.29" y="-919.9" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Hosts Pods</text>
+</g>
+<!-- k8s_deployment.backend -->
+<g id="node15" class="node">
+<title>k8s_deployment.backend</title>
+<polygon fill="#ffe0b2" stroke="#444444" points="610.61,-610 524.87,-610 524.87,-606 520.87,-606 520.87,-602 524.87,-602 524.87,-565.2 520.87,-565.2 520.87,-561.2 524.87,-561.2 524.87,-557.2 610.61,-557.2 610.61,-610"/>
+<polyline fill="none" stroke="#444444" points="524.87,-606 528.87,-606 528.87,-602 524.87,-602"/>
+<polyline fill="none" stroke="#444444" points="524.87,-565.2 528.87,-565.2 528.87,-561.2 524.87,-561.2"/>
+<text xml:space="preserve" text-anchor="middle" x="567.74" y="-586.6" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Backend Pods</text>
+<text xml:space="preserve" text-anchor="middle" x="567.74" y="-574.6" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(Node.js)</text>
+</g>
+<!-- eks_node_group&#45;&gt;k8s_deployment.backend -->
+<g id="edge13" class="edge">
+<title>eks_node_group-&gt;k8s_deployment.backend</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" stroke-dasharray="5,2" d="M551.29,-953.78C554.15,-940.23 556.74,-928 556.74,-928 556.74,-928 568.74,-656.8 568.74,-656.8 568.74,-656.8 568.74,-646 568.74,-646 568.74,-646 568.44,-627.11 568.16,-610.28"/>
+<polygon fill="#555555" stroke="#555555" stroke-width="1.5" points="548.57,-953.09 549.65,-961.5 554.05,-954.25 548.57,-953.09"/>
+<text xml:space="preserve" text-anchor="middle" x="584.42" y="-784.3" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Hosts Pods</text>
+</g>
+<!-- k8s_service.backend -->
+<g id="node14" class="node">
+<title>k8s_service.backend</title>
+<path fill="#ffe0b2" stroke="#444444" d="M501.78,-745.6C501.78,-745.6 421.71,-745.6 421.71,-745.6 415.71,-745.6 409.71,-739.6 409.71,-733.6 409.71,-733.6 409.71,-704.8 409.71,-704.8 409.71,-698.8 415.71,-692.8 421.71,-692.8 421.71,-692.8 501.78,-692.8 501.78,-692.8 507.78,-692.8 513.78,-698.8 513.78,-704.8 513.78,-704.8 513.78,-733.6 513.78,-733.6 513.78,-739.6 507.78,-745.6 501.78,-745.6"/>
+<text xml:space="preserve" text-anchor="middle" x="461.74" y="-722.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">Backend ClusterIP</text>
+<text xml:space="preserve" text-anchor="middle" x="461.74" y="-710.2" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(Internal Service)</text>
+</g>
+<!-- k8s_deployment.frontend&#45;&gt;k8s_service.backend -->
+<g id="edge5" class="edge">
+<title>k8s_deployment.frontend-&gt;k8s_service.backend</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" d="M445.63,-828.12C442.27,-811.29 438.51,-792.4 438.51,-792.4 438.51,-792.4 438.51,-781.6 438.51,-781.6 438.51,-781.6 443.23,-769.13 448.41,-755.43"/>
+<polygon fill="#555555" stroke="#555555" stroke-width="1.5" points="451.01,-756.48 451.22,-748.01 445.77,-754.5 451.01,-756.48"/>
+<text xml:space="preserve" text-anchor="middle" x="470.63" y="-784.3" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Internal API Call</text>
+</g>
+<!-- k8s_service.backend&#45;&gt;k8s_deployment.backend -->
+<g id="edge6" class="edge">
+<title>k8s_service.backend-&gt;k8s_deployment.backend</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" d="M482.18,-692.44C498.97,-671.28 522.88,-641.14 541.16,-618.11"/>
+<polygon fill="#555555" stroke="#555555" stroke-width="1.5" points="543.18,-620.07 545.96,-612.06 538.79,-616.59 543.18,-620.07"/>
+<text xml:space="preserve" text-anchor="middle" x="536.17" y="-648.7" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Routes to</text>
+</g>
+<!-- aws_db_instance.rds -->
+<g id="node17" class="node">
+<title>aws_db_instance.rds</title>
+<path fill="#81c784" stroke="#444444" d="M630.88,-467.8C630.88,-471.44 602.58,-474.4 567.74,-474.4 532.9,-474.4 504.6,-471.44 504.6,-467.8 504.6,-467.8 504.6,-408.4 504.6,-408.4 504.6,-404.76 532.9,-401.8 567.74,-401.8 602.58,-401.8 630.88,-404.76 630.88,-408.4 630.88,-408.4 630.88,-467.8 630.88,-467.8"/>
+<path fill="none" stroke="#444444" d="M630.88,-467.8C630.88,-464.16 602.58,-461.2 567.74,-461.2 532.9,-461.2 504.6,-464.16 504.6,-467.8"/>
+<text xml:space="preserve" text-anchor="middle" x="567.74" y="-441.1" font-family="Helvetica, Arial, sans-serif" font-size="10.00">RDS PostgreSQL</text>
+<text xml:space="preserve" text-anchor="middle" x="567.74" y="-429.1" font-family="Helvetica, Arial, sans-serif" font-size="10.00">(Multi-AZ Deployment)</text>
+</g>
+<!-- k8s_deployment.backend&#45;&gt;aws_db_instance.rds -->
+<g id="edge7" class="edge">
+<title>k8s_deployment.backend-&gt;aws_db_instance.rds</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" d="M567.74,-556.95C567.74,-537 567.74,-508.82 567.74,-485.01"/>
+<polygon fill="#555555" stroke="#555555" stroke-width="1.5" points="570.54,-485.04 567.74,-477.04 564.94,-485.04 570.54,-485.04"/>
+<text xml:space="preserve" text-anchor="middle" x="614.24" y="-513.1" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> SQL Queries (Port 5432)</text>
+</g>
+<!-- aws_db_subnet_group.rds -->
+<g id="node16" class="node">
+<title>aws_db_subnet_group.rds</title>
+<path fill="#c8e6c9" stroke="#444444" d="M606.25,-319C606.25,-319 529.23,-319 529.23,-319 523.23,-319 517.23,-313 517.23,-307 517.23,-307 517.23,-290.2 517.23,-290.2 517.23,-284.2 523.23,-278.2 529.23,-278.2 529.23,-278.2 606.25,-278.2 606.25,-278.2 612.25,-278.2 618.25,-284.2 618.25,-290.2 618.25,-290.2 618.25,-307 618.25,-307 618.25,-313 612.25,-319 606.25,-319"/>
+<text xml:space="preserve" text-anchor="middle" x="567.74" y="-295.6" font-family="Helvetica, Arial, sans-serif" font-size="10.00">DB Subnet Group</text>
+</g>
+<!-- aws_db_subnet_group.rds&#45;&gt;aws_subnet.privateDB_subnet_A -->
+<g id="edge14" class="edge">
+<title>aws_db_subnet_group.rds-&gt;aws_subnet.privateDB_subnet_A</title>
+<path fill="none" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="5,2" d="M553.8,-277.91C542.52,-261.99 528.5,-242.2 528.5,-242.2 528.5,-242.2 522.73,-220.81 517.28,-200.58"/>
+<polygon fill="#2e7d32" stroke="#2e7d32" stroke-width="1.5" points="520.03,-200.03 515.25,-193.03 514.62,-201.49 520.03,-200.03"/>
+<text xml:space="preserve" text-anchor="middle" x="560.12" y="-234.1" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Primary/Standby</text>
+</g>
+<!-- aws_db_subnet_group.rds&#45;&gt;aws_subnet.privateDB_subnet_B -->
+<g id="edge15" class="edge">
+<title>aws_db_subnet_group.rds-&gt;aws_subnet.privateDB_subnet_B</title>
+<path fill="none" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="5,2" d="M597.37,-277.74C626.46,-258.24 666.5,-231.4 666.5,-231.4 666.5,-231.4 741.74,-223.4 741.74,-223.4 741.74,-223.4 759.76,-210.45 778.81,-196.77"/>
+<polygon fill="#2e7d32" stroke="#2e7d32" stroke-width="1.5" points="780.27,-199.16 785.14,-192.22 777.01,-194.62 780.27,-199.16"/>
+<text xml:space="preserve" text-anchor="middle" x="698.12" y="-234.1" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Primary/Standby</text>
+</g>
+<!-- aws_db_instance.rds&#45;&gt;aws_db_subnet_group.rds -->
+<g id="edge8" class="edge">
+<title>aws_db_instance.rds-&gt;aws_db_subnet_group.rds</title>
+<path fill="none" stroke="#555555" stroke-width="1.5" d="M567.74,-401.33C567.74,-379.01 567.74,-350.6 567.74,-329.48"/>
+<polygon fill="#555555" stroke="#555555" stroke-width="1.5" points="570.54,-329.73 567.74,-321.73 564.94,-329.73 570.54,-329.73"/>
+<text xml:space="preserve" text-anchor="middle" x="585.5" y="-357.7" font-family="Helvetica, Arial, sans-serif" font-size="9.00"> Bound to</text>
+</g>
+</g>
+</svg>
