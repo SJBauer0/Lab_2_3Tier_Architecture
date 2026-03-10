@@ -86,11 +86,15 @@ resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly" {
 
 resource "aws_eks_cluster" "main_eks_cluster" {
   name     = "${var.project_name}-main-eks-cluster"
+
+  # The Kubernetes version for the EKS cluster for easy management and consistency across the architecture.
   version  = var.eks_version
   role_arn = aws_iam_role.eks_role.arn
 
   vpc_config {
     # False means the API server cannot be accessed from within the VPC.
+    # This is a common security best practice to limit access to the control plane
+    # while still allowing access from the public internet for kubectl and other management tools.
     endpoint_private_access = false
     # True means the API server can be accessed over the public internet.
     endpoint_public_access = true
@@ -116,6 +120,8 @@ resource "aws_eks_node_group" "eks_nodes" {
   # Instance type is customizable via variables
   instance_types = [var.node_instance_type]
 
+  # Scaling configuration for the node group
+  # This allows the node group to automatically scale based on the workload demands.
   scaling_config {
     min_size     = var.node_min_size
     max_size     = var.node_max_size

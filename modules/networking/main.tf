@@ -28,7 +28,11 @@ resource "aws_internet_gateway" "main_internet_gateway" {
 resource "aws_subnet" "public_subnet_A" {
   vpc_id = aws_vpc.main_vpc.id
   # The cidrsubnet function is used to calculate the subnet's CIDR block based on the VPC's CIDR block.
-  cidr_block              = cidrsubnet(var.vpc_cidr, 8, 1) # e.g., 172.16.1.0/24
+  # The parameters (var.vpc_cidr, 8, 1) mean: take the VPC CIDR block, create subnets by borrowing 8 bits for subnetting, and assign the first subnet (1).
+  # For example, if var.vpc_cidr is "172.16.0.0/16", then cidrsubnet(var.vpc_cidr, 8, 1) would result in "172.16.1.0/24"
+  # And if var.vpc_cidr is "172.16.0.0/16", then cidrsubnet(var.vpc_cidr, 8, 2) would result in "172.16.2.0/24"
+  cidr_block              = cidrsubnet(var.vpc_cidr, 8, 1)
+
   availability_zone       = var.availability_zones[0]
   map_public_ip_on_launch = true # Instances get a public IP automatically
 
@@ -44,8 +48,10 @@ resource "aws_subnet" "public_subnet_A" {
 # Public subnet in the second Availability Zone
 resource "aws_subnet" "public_subnet_B" {
   vpc_id = aws_vpc.main_vpc.id
+
   # The cidrsubnet function is used to calculate the subnet's CIDR block based on the VPC's CIDR block.
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, 2) # e.g., 172.16.2.0/24
+
   availability_zone       = var.availability_zones[1]
   map_public_ip_on_launch = true
 
@@ -91,14 +97,17 @@ resource "aws_route_table_association" "public_subnet_B_route_table_association"
 resource "aws_subnet" "private_subnet_A" {
   vpc_id = aws_vpc.main_vpc.id
   # The cidrsubnet function is used to calculate the subnet's CIDR block based on the VPC's CIDR block.
-  cidr_block        = cidrsubnet(var.vpc_cidr, 8, 10)
+  cidr_block        = cidrsubnet(var.vpc_cidr, 8, 10) # The subnet will be 172.16.10.0/24
   availability_zone = var.availability_zones[0]
 
   tags = {
     Name = "${var.project_name}-privateSubnetA"
-    # Required for internal load balancers
+    # Required for internal load balancers that route traffic to private subnets, 
+    # "1" means this subnet can be used for internal load balancers
+    # "0" means it cannot be used for internal load balancers, 
     "kubernetes.io/role/internal-elb" = "1"
-    # Required for EKS
+    # This tag is necessary for EKS to recognize the subnet as part of the cluster 
+    # and to allow provisioning of worker nodes and internal load balancers within it.
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "owned"
   }
 }
@@ -107,7 +116,7 @@ resource "aws_subnet" "private_subnet_A" {
 resource "aws_subnet" "private_subnet_B" {
   vpc_id = aws_vpc.main_vpc.id
   # The cidrsubnet function is used to calculate the subnet's CIDR block based on the VPC's CIDR block.
-  cidr_block        = cidrsubnet(var.vpc_cidr, 8, 20)
+  cidr_block        = cidrsubnet(var.vpc_cidr, 8, 20) # The subnet will be 172.16.20.0/24
   availability_zone = var.availability_zones[1]
 
   tags = {
@@ -127,7 +136,7 @@ resource "aws_subnet" "private_subnet_B" {
 resource "aws_subnet" "privateDB_subnet_A" {
   vpc_id = aws_vpc.main_vpc.id
   # The cidrsubnet function is used to calculate the subnet's CIDR block based on the VPC's CIDR block.
-  cidr_block        = cidrsubnet(var.vpc_cidr, 8, 100)
+  cidr_block        = cidrsubnet(var.vpc_cidr, 8, 100) # The subnet will be 172.16.100.0/24
   availability_zone = var.availability_zones[0]
 
   tags = {
@@ -138,7 +147,7 @@ resource "aws_subnet" "privateDB_subnet_A" {
 resource "aws_subnet" "privateDB_subnet_B" {
   vpc_id = aws_vpc.main_vpc.id
   # The cidrsubnet function is used to calculate the subnet's CIDR block based on the VPC's CIDR block.
-  cidr_block        = cidrsubnet(var.vpc_cidr, 8, 200)
+  cidr_block        = cidrsubnet(var.vpc_cidr, 8, 200) # The subnet will be 172.16.200.0/24
   availability_zone = var.availability_zones[1]
 
   tags = {

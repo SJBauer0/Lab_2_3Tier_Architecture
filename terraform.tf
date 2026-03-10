@@ -20,6 +20,7 @@ provider "aws" {
 provider "kubernetes" {
   # Required to interact with the EKS cluster  
   host = module.eks.cluster_endpoint
+  
   # Required to authenticate with the EKS cluster
   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
 

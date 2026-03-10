@@ -14,6 +14,8 @@ The infrastructure is distributed across two Availability Zones for high availab
 
 ### Terraform Graph
 
+This graph was generated with `terraform graph` and was modified with AI to enhance organization of the infrastructure.
+
 ![Terraform Graph](img/graphviz.svg)
 
 ## Project Structure
@@ -28,7 +30,7 @@ The project is organized into modular components for maintainability and reusabi
 
 ## Prerequisites
 
-- Terraform (>= 1.0.0)
+- Terraform
 - AWS CLI configured with appropriate permissions.
 - kubectl configured to interact with the EKS cluster.
 
