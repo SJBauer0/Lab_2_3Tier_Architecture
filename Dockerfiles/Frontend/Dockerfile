@@ -11,46 +11,39 @@
 # Now only use the finalized package, and put it in the image.
 # 
 
-# This is an ultra-lightweight Linux operating system and set the base variable
+# Base Setup
 FROM node:22-alpine AS base 
-# Enable pnpm without having to manually download it
 RUN corepack enable pnpm
 
-
-# Create a new temporary environment
+# Builder Stage
 FROM base AS builder
-# Move to the /app directory
 WORKDIR /app
-# Copy the package.json and the lock.yaml file to the root
 COPY package.json pnpm-lock.yaml ./
-# Install the heavy packages
 RUN pnpm install --frozen-lockfile
-# Copy the rest of the code 
 COPY . .
-# Run and create the build.
+# Ensure Next.js is configured for 'standalone' output
 RUN pnpm build
 
-
-# Fresh start with the essential to without the heavy dev tools from builder tools
+# 3. Runner Stage (The AWS-bound Image)
 FROM base AS runner
 WORKDIR /app
-# Run node.js with the fastest, most secure mode
 ENV NODE_ENV=production
 
-# Create a restricted nextjs user to run the app 
-# with the absolute minimum privileges required
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Create the user to avoid running as 'root' in EC2
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-# Change user
+# Switch to the restricted user early
 USER nextjs
 
-# Use only the final standalone files and public assets.
-# Assign ownership of these files to nextjs user.
+# The 'Hand-off' with correct ownership
+# Without --chown, the 'nextjs' user might not have permissions 
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Turn on the Server
 EXPOSE 3000
+# AWS Target Group will use this port for Health Checks
+ENV PORT 3000
+
 CMD ["node", "server.js"]

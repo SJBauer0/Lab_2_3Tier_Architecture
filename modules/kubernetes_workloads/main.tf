@@ -46,6 +46,8 @@ resource "kubernetes_deployment" "backend_deployment" {
           env {
             name = "DATABASE_URL"
             # RDS connection details
+            # postgres?schema=public is the schema configuration for Prisma, which expects a public schema in the database.
+            # This is a common setup for simplicity in development and can be customized for production use.
             value = "postgresql://${var.db_username}:${var.db_password}@${var.db_endpoint}/postgres?schema=public"
           }
 
