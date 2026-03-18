@@ -115,3 +115,19 @@ data "kubernetes_service" "frontend" {
     namespace = "default"
   }
 }
+
+# Fetch the ArgoCD default admin password secret
+data "kubernetes_secret" "argocd_admin_password" {
+  metadata {
+    name      = "argocd-initial-admin-secret"
+    namespace = "argocd"
+  }
+}
+
+# Fetch the Grafana default admin password secret
+data "kubernetes_secret" "grafana_admin_password" {
+  metadata {
+    name      = "prometheus-grafana"
+    namespace = "monitoring"
+  }
+}
