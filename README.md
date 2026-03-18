@@ -44,7 +44,7 @@ The project uses the following key variables and settings (defined in `variables
 - **Database**: PostgreSQL 15.8 (Multi-AZ)
 - **Node Instance Type**: `t3.small`
 
-## Deployment
+## Deployment (GitOps Workflow)
 
 1. **Initialize Terraform**:
 
@@ -58,9 +58,30 @@ The project uses the following key variables and settings (defined in `variables
    ```
 3. **Apply the Infrastructure**:
 
+   Terraform builds the VPC, the RDS Database, the EKS Cluster, and installs Argo CD and Grafana via Helm charts.
    ```bash
    terraform apply
    ```
+4. **Link Argo CD to GitHub Repository**:
+
+   Deploy the Argo CD Application manifest to synchronize with your `k8s-manifests` folder.
+   ```bash
+   kubectl apply -f argo-application.yaml
+   ```
+
+### Argo CD & Grafana Access
+
+**Retrieve Argo CD initial admin password (Username is `admin`):**
+```bash
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
+*Note: Expose the UI by port-forwarding or setting up an Ingress for the `argocd-server` service.*
+
+**Retrieve Grafana initial admin password (Username is `admin`):**
+```bash
+kubectl -n monitoring get secret prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d
+```
+*Note: Expose the UI by port-forwarding or setting up an Ingress for the `prometheus-grafana` service.*
 
 ## Cleanup
 

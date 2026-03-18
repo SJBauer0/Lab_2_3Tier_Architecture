@@ -9,6 +9,10 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "~> 2.30"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.12"
+    }
   }
 }
 
@@ -20,7 +24,7 @@ provider "aws" {
 provider "kubernetes" {
   # Required to interact with the EKS cluster  
   host = module.eks.cluster_endpoint
-  
+
   # Required to authenticate with the EKS cluster
   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
 
@@ -29,5 +33,18 @@ provider "kubernetes" {
     api_version = "client.authentication.k8s.io/v1beta1"
     args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
     command     = "aws"
+  }
+}
+
+# Configure the Helm provider exactly like the Kubernetes provider
+provider "helm" {
+  kubernetes {
+    host                   = module.eks.cluster_endpoint
+    cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
+      command     = "aws"
+    }
   }
 }
