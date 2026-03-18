@@ -29,7 +29,7 @@ spec:
               memory: "256Mi"
           env:
             - name: DATABASE_URL
-              value: "postgresql://dbadmin:Admin12345@<RDS_ENDPOINT_PLACEHOLDER>/postgres?schema=public"
+              value: "postgresql://dbadmin:Admin12345@lab-2-sjb-rds-db.cobs4muue9yt.us-east-1.rds.amazonaws.com:5432/postgres?schema=public"
             - name: POD_NAME
               valueFrom:
                 fieldRef:
