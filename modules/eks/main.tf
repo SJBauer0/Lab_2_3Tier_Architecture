@@ -122,7 +122,7 @@ resource "aws_eks_cluster" "main_eks_cluster" {
 ### EKS Cluster Access ###
 #######################
 
-/* # Grant cluster admin access to the provided IAM ARNs to see clusters, resources and compute in AWS console
+# Grant cluster admin access to the provided IAM ARNs to see clusters, resources and compute in AWS console
 resource "aws_eks_access_entry" "admin_access_entry" {
   # This allows multiple ARNs to be passed via variables and grants them admin access to the EKS cluster in the AWS Console.
   # toset function is used to convert the list of ARNs into a set, which is required for the for_each loop to iterate over 
@@ -133,7 +133,7 @@ resource "aws_eks_access_entry" "admin_access_entry" {
   cluster_name  = aws_eks_cluster.main_eks_cluster.name
   principal_arn = each.value
   type          = "STANDARD"
-} */
+}
 
 # Grant cluster admin access to the provided IAM ARNs to see clusters, resources and compute in AWS console
 resource "aws_eks_access_policy_association" "admin_policy_association" {

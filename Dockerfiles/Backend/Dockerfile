@@ -45,13 +45,6 @@ WORKDIR /app
 # Run node.js with the fastest, most secure mode
 ENV NODE_ENV=production
 
-# Create the user to avoid running as 'root' in EC2
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nestjs
-
-# Switch to the restricted user early
-USER nestjs
-
 # Pluck the compiled code from builder
 COPY --from=builder --chown=nestjs:nodejs /app/dist ./dist
 
