@@ -89,3 +89,29 @@ resource "helm_release" "kube_prometheus_stack" {
 
   depends_on = [module.eks]
 }
+
+# Fetch the Argo CD service to get its LoadBalancer URL
+data "kubernetes_service" "argocd_server" {
+  metadata {
+    name      = "argocd-server"
+    namespace = "argocd"
+  }
+  depends_on = [helm_release.argocd]
+}
+
+# Fetch the Grafana service to get its LoadBalancer URL
+data "kubernetes_service" "grafana" {
+  metadata {
+    name      = "prometheus-grafana"
+    namespace = "monitoring"
+  }
+  depends_on = [helm_release.kube_prometheus_stack]
+}
+
+# Fetch the Frontend service to get its LoadBalancer URL
+data "kubernetes_service" "frontend" {
+  metadata {
+    name      = "lab-2-sjb-frontend-service"
+    namespace = "default"
+  }
+}
